@@ -1,8 +1,13 @@
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
 import NotionService from "../../services/notion-service";
+import styles from './styles.module.scss';
+import { Button } from "../../components";
+import { useRouter } from 'next/router';
 
 const Post = ({markdown, post}) => {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -12,26 +17,20 @@ const Post = ({markdown, post}) => {
         <meta name={"og:description"} title={"og:description"} content={post.description}/>
         <meta name={"og:image"} title={"og:image"} content={post.cover}/>
       </Head>
-
-      <div className="min-h-screen">
-        <main className="max-w-5xl mx-auto relative">
-          <div className="flex items-center justify-center">
-            <article className="prose">
-              <ReactMarkdown>{markdown}</ReactMarkdown>
-            </article>
-          </div>
-        </main>
-      </div>
+      <article className={styles.content}>
+        <Button icon="angle-left" onClick={() => router.back() }>Voltar</Button>
+        <h1>{post.icon ? post.icon.emoji : "" }{post.title}</h1>
+        <hr />
+        <ReactMarkdown>{markdown}</ReactMarkdown>
+      </article>
     </>
   )
 }
 
 
 export const getStaticProps = async (context) => {
-  const notionService = new NotionService()
-
-  // @ts-ignore
-  const p = await notionService.getSingleBlogPost(context.params?.slug)
+  const notionService = new NotionService();
+  const p = await notionService.getSingleBlogPost(context.params?.slug);
 
   if (!p) {
     throw ''

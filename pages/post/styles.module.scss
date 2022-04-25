@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.content {
+
+  h1 {
+    margin: 3rem 0 2rem;
+    font-size: 2.2rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    text-align: center;
+   
+  }
+
+  hr {
+    border-bottom: 0.15rem solid $N100;
+    width: 50%;
+    margin-bottom: 3rem;
+  }
+}

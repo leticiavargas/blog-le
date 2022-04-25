@@ -10,53 +10,47 @@ export default class NotionService {
 
     async getPublishedBlogPosts() {
       const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
-      console.log("DATABASE", database);
       // list blog posts
       const response = await this.client.databases.query({
           database_id: database,
           filter: {
             property: 'Published',
             checkbox: {
-                equals: true
+              equals: true
             }
           },
           sorts: [
-              {
-                property: 'Updated',
-                direction: 'descending'
-              }
+            {
+              property: 'Updated',
+              direction: 'descending'
+            }
           ]
       });
-console.log("ReSPONSE", response);
-      return response.results.map(res => {
-        return NotionService.pageToPostTransformer(res);
-      })
+      return response.results.map(res => (NotionService.pageToPostTransformer(res)));
     }
 
     async getSingleBlogPost(slug) {
-        let post, markdown
-
-        const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
+      let post, markdown;
+      const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
         // list of blog posts
-        const response = await this.client.databases.query({
-            database_id: database,
-            filter: {
-                property: 'Slug',
-                formula: {
-                    text: {
-                        equals: slug // slug
-                    }
-                },
-                // add option for tags in the future
-            },
-            sorts: [
-                {
-                    property: 'Updated',
-                    direction: 'descending'
-                }
-            ]
-        });
-
+      const response = await this.client.databases.query({
+        database_id: database,
+        filter: {
+          property: 'Slug',
+          formula: {
+            string: {
+              equals: slug // slug
+            }
+          },
+          // add option for tags in the future
+        },
+        sorts: [
+          {
+            property: 'Updated',
+            direction: 'descending'
+          }
+        ]
+      });
         if (!response.results[0]) {
             throw 'No results available'
         }
@@ -76,27 +70,29 @@ console.log("ReSPONSE", response);
 
     static pageToPostTransformer(page) { 
       let cover = page.cover;
-      console.log("COVER", cover);
-      switch (cover.type) {
-        case 'file':
-          cover = page.cover.file
-          break;
-        case 'external':
-          cover = page.cover.external.url;
-          break;
-        default:
-          // Add default cover image if you want...
-          cover = ''
+      if (cover) {
+        switch (cover.type) {
+          case 'file':
+            cover = page.cover.file
+            break;
+          case 'external':
+            cover = page.cover.external.url;
+            break;
+          default:
+            // Add default cover image if you want...
+            cover = ''
+        }
       }
 
       return {
           id: page.id,
           cover: cover,
+          icon: page.icon,
           title: page.properties.Name.title[0].plain_text,
           tags: page.properties.Tags.multi_select,
           description: page.properties.Description.rich_text[0].plain_text,
           date: page.properties.Updated.last_edited_time,
-          slug: page.properties.Slug.rich_text[0].plain_text
+          slug: page.properties.Slug.formula.string
       }
     }
 }

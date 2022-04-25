@@ -1,0 +1,9 @@
+.main {
+  min-height: 100%;
+  flex: 1;
+  display: flex;
+
+  .content {
+    padding: 2.5rem 3.5rem;
+  }
+}

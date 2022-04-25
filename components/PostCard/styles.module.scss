@@ -1,0 +1,29 @@
+@import '../../styles/variables.scss';
+
+.container {
+  margin-top: 1.5rem;
+  display: block;
+
+  .title {
+    border-bottom: 0.15rem solid $N100;
+    padding: 0 0 0.222rem;
+    font-size: 1.6rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    margin: 0.222rem 0;
+    font-size: 0.72rem;
+
+    time {
+      margin-right: 00.222rem;
+    }
+  }
+
+  .tagList {
+    display: flex;
+    flex-direction: row;
+  }
+
+}

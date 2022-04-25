@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.button {
+  color: $PURPLE;
+  background-color: $N000;
+  border: solid 0.056rem $PURPLE;
+  padding: 0.2rem 0.7rem;
+  font-family: "Ubuntu", sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+
+  .label {
+    margin-left: 0.35rem;
+  }
+
+  &:hover {
+    background-color: $PURPLE;
+    color: $N000
+  }
+}

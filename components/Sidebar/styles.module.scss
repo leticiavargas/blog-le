@@ -1,6 +1,10 @@
+@import '../../styles/variables.scss';
+
 .container {
   min-width: 20rem;
   height: 100vh;
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   background: linear-gradient(
@@ -17,8 +21,7 @@
   );
 }
 
-//#FF00F2 - pink
-//#000066 - azul
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -27,26 +30,29 @@
 
   .avatar {
     width: 6rem;
-    border: 2px solid #FF00F2;
+    border: 2px solid $N000;
     border-radius: 50%;
     box-sizing: border-box;    
     overflow: hidden;
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-    will-change: transform;
-    transform: translatey(0px);
+    will-change: float;
     animation: float 6s ease-in-out infinite;
 
     img { width: 100%; height: auto; }
   }
   
-  hr {
-    border: none;
+  h3 {
+    color: $N000;
+    font-size: 2rem;
+    padding: 1rem 0 0.5rem 0 ;
+    font-family: 'Ms Madi', cursive;
   }
 
   .divider {
     margin: 10px auto;
-    border-top: 1px solid white;
-    width: 30%;
+    border-top: 1px solid $N000;
+    opacity: 0.5;
+    width: 40%;
   }
 
   .links {
@@ -58,22 +64,22 @@
       padding: 0;
       text-align: center;
       li {
-        font-weight: 700;
+        font-weight: 600;
 
         a {
           text-decoration: none;
-          color: #FFFFFF;
+          color: $N000;
           transition: color .3s ease-in-out;
         }
         a:hover {
-          color: #000066
+          color: $DARKBLUE
         }
       }
     }
   }
 
   .social {
-    color: #FFFFFF;
+    color: $N000;
     opacity: 0.85;
     ul {
       list-style: none;
