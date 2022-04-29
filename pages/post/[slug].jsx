@@ -41,6 +41,7 @@ export const getStaticProps = async (context) => {
       markdown: p.markdown,
       post: p.post
     },
+    revalidate: 1,
   }
 }
 
