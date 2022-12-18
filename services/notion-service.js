@@ -2,7 +2,6 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
 export default class NotionService {
-
   constructor() {
     this.client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
     this.n2m = new NotionToMarkdown({ notionClient: this.client });
@@ -57,7 +56,6 @@ export default class NotionService {
 
         // grab page from notion
         const page = response.results[0];
-
         const mdBlocks = await this.n2m.pageToMarkdown(page.id)
         markdown = this.n2m.toMarkdownString(mdBlocks);
         post = NotionService.pageToPostTransformer(page);
@@ -68,7 +66,7 @@ export default class NotionService {
         }
     }
 
-    static pageToPostTransformer(page) { 
+    static pageToPostTransformer(page) {
       let cover = page.cover;
       if (cover) {
         switch (cover.type) {
@@ -85,14 +83,15 @@ export default class NotionService {
       }
 
       return {
-          id: page.id,
-          cover: cover,
-          icon: page.icon,
-          title: page.properties.Name.title[0].plain_text,
-          tags: page.properties.Tags.multi_select,
-          description: page.properties.Description.rich_text[0].plain_text,
-          date: page.properties.Updated.last_edited_time,
-          slug: page.properties.Slug.formula.string
+        id: page.id,
+        cover: cover,
+        icon: page.icon,
+        title: page.properties.Name.title[0].plain_text,
+        tags: page.properties.Tags.multi_select,
+        description: page.properties.Description.rich_text[0].plain_text,
+        date: page.properties.Updated.last_edited_time,
+        slug: page.properties.Slug.formula.string,
+        url: page.url
       }
     }
 }
