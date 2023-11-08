@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from "next/head";
-import { Sidebar } from '../index';
+import { Sidebar, Header } from '../index';
 import styles from './styles.module.scss';
 
 const Layout = ({children}) => {
@@ -17,7 +17,7 @@ const Layout = ({children}) => {
       <meta name={"og:description"} title={"og:description"} content={title}/>
     </Head>
     <main className={styles.main}>
-      <Sidebar author="Letícia Vargas" />
+      <Header />
       <div className={styles.content}>
         {children}
       </div>

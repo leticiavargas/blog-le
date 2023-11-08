@@ -1,11 +1,11 @@
 import ReactMarkdown from "react-markdown";
 import Head from "next/head";
-import NotionService from "../../services/notion-service";
+import { GetPublishedBlogPosts, GetSingleBlogPost } from "../../services/notion-service";
 import styles from './styles.module.scss';
 import { Button } from "../../components";
 import { useRouter } from 'next/router';
 
-const Post = ({markdown, post}) => {
+const Post = ({ markdown, post }) => {
   const router = useRouter();
 
   return (
@@ -21,7 +21,7 @@ const Post = ({markdown, post}) => {
         <Button icon="angle-left" onClick={() => router.back() }>Voltar</Button>
         <h1>{post.icon ? post.icon.emoji : "" }{post.title}</h1>
         <hr />
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+        <ReactMarkdown>{markdown.parent}</ReactMarkdown>
       </article>
     </>
   )
@@ -29,9 +29,8 @@ const Post = ({markdown, post}) => {
 
 
 export const getStaticProps = async (context) => {
-  const notionService = new NotionService();
-  const p = await notionService.getSingleBlogPost(context.params?.slug);
-
+  const p = await GetSingleBlogPost(context.params?.slug);
+  console.log("p", p);
   if (!p) {
     throw ''
   }
@@ -46,9 +45,7 @@ export const getStaticProps = async (context) => {
 }
 
 export async function getStaticPaths() {
-  const notionService = new NotionService()
-
-  const posts = await notionService.getPublishedBlogPosts()
+  const posts = await GetPublishedBlogPosts()
 
   // Because we are generating static paths, you will have to redeploy your site whenever
   // you make a change in Notion.
