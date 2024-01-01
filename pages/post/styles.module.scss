@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use 'colors';
 
 .content {
 
@@ -12,7 +12,7 @@
   }
 
   hr {
-    border-bottom: 0.15rem solid $N100;
+    border-bottom: 0.15rem solid colors.$N100;
     width: 50%;
     margin-bottom: 3rem;
   }

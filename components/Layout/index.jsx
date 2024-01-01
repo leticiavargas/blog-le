@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from "next/head";
-import { Sidebar, Header } from '../index';
+import { Footer, Header, Sidebar } from '../index';
 import styles from './styles.module.scss';
 
 const Layout = ({children}) => {
@@ -16,12 +16,16 @@ const Layout = ({children}) => {
       <meta name={"og:title"} title={"og:title"} content={title}/>
       <meta name={"og:description"} title={"og:description"} content={title}/>
     </Head>
-    <main className={styles.main}>
+    <section className={styles.body}>
       <Header />
-      <div className={styles.content}>
-        {children}
-      </div>
-    </main>
+      <section className={styles.container}>
+        <article className={styles.content}>
+          {children}
+        </article>
+        <Sidebar />
+      </section>
+      <Footer />
+    </section>
   </>
   );
 }

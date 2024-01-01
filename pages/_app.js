@@ -1,16 +1,34 @@
 import '../styles/globals.scss';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import * as gtag from '../lib/gtag';
 import Analytics from '../components/Analytics';
 import { Layout } from '../components';
 import { useEffect } from 'react';
+import { Roboto, Lobster } from 'next/font/google';
 
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '500', '700', '900']
+});
 
-library.add(faGithub, faInstagram, faLinkedin, faAngleLeft);
+const lobster = Lobster({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-lobster'
+});
+
+//export const metadata = {
+//  title: 'Acme Dashboard',
+//  description: 'The official Next.js Course Dashboard, built with App Router.',
+//};
+
+export async function generateMetadata() {
+  return {
+    title: "que quero um titleeee"
+  } 
+}
 
 function MyApp({ Component, pageProps }) {
+  console.log("PAGEPROPS >>>>", pageProps)
   useEffect(() => {
     const handleRouteChange = (url, title) => {
       gtag.pageview(url, title)
@@ -24,10 +42,12 @@ function MyApp({ Component, pageProps }) {
   }, [pageProps]);
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-      <Analytics />
-    </Layout>
+    <main className={`${roboto.className} ${lobster.variable}`}>
+      <Layout >
+        <Component {...pageProps} />
+        <Analytics />
+      </Layout>
+    </main>
   )
 }
 

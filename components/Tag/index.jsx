@@ -2,9 +2,9 @@ import styles from './styles.module.scss';
 
 const Tag = ({ children }) => {
   return(
-    <div className={styles.tag}>
+    <p className={styles.tag}>
       {children}
-    </div>
+    </p>
   )
 }
 

@@ -1,17 +1,8 @@
-@import '../../styles/variables.scss'; 
+@use 'colors'; 
+@use 'fonts';
 
 .tag {
-  color: $N000;
-  opacity: 0.9;
-  background-color: $PURPLE;
-  font-size: .5rem;
-  border-radius: .25rem;
-  padding: .167rem .25rem;
-  width: fit-content;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.tag + .tag {
-  margin-left: .3rem;
+  font-size: fonts.$mediumText;
+  margin: unset;
+  color: colors.$N500;
 }

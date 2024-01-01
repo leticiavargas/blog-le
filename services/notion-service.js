@@ -2,6 +2,7 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
 const GetPublishedBlogPosts = async () => {
+  console.log("GETTING BLOG POSTS ... ");
   const client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
   const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
   // list blog posts
@@ -81,6 +82,8 @@ function pageToPostTransformer(page) {
     }
   }
 
+  //const tags = page.properties.Tags.multi_select.map(tag => tag.name);
+
   return {
     id: page.id,
     cover: cover,
@@ -88,7 +91,8 @@ function pageToPostTransformer(page) {
     title: page.properties.Name.title[0].plain_text,
     tags: page.properties.Tags.multi_select,
     description: page.properties.Description.rich_text[0].plain_text,
-    date: page.properties.Updated.last_edited_time,
+    updatedDate: page.properties.Updated.last_edited_time,
+    publishedDate: page.properties.PublishedDate.date.start,
     slug: page.properties.Slug.formula.string,
     url: page.url
   }

@@ -1,0 +1,31 @@
+@use "colors";
+@use "fonts";
+
+.header {
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation {
+  height: 5em;
+  width: 100%;
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 40%;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    border-top: 1px solid colors.$terciaryColor;
+    border-bottom: 1px solid colors.$terciaryColor;
+    text-transform: uppercase;
+    font-size: fonts.$mediumText;
+  }
+}

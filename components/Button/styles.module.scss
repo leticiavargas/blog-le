@@ -1,9 +1,9 @@
-@import '../../styles/variables.scss';
+@use "colors";
 
 .button {
-  color: $PURPLE;
-  background-color: $N000;
-  border: solid 0.056rem $PURPLE;
+  color: colors.$PURPLE;
+  background-color: colors.$N000;
+  border: solid 0.056rem colors.$PURPLE;
   padding: 0.2rem 0.7rem;
   font-family: "Ubuntu", sans-serif;
   border-radius: 0.3rem;
@@ -14,7 +14,7 @@
   }
 
   &:hover {
-    background-color: $PURPLE;
-    color: $N000
+    background-color: colors.$PURPLE;
+    color: colors.$N000
   }
 }

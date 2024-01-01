@@ -1,4 +1,4 @@
-import {FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 import Link from "next/link";
 //import dayjs from 'dayjs'
 
@@ -18,10 +18,10 @@ console.log("POSTTTT", post);
           <div className="flex-1 bg-gray-50 pt-2 pb-6 px-4 flex flex-col justify-between">
             <div className="flex-1">
               <span className="block mt-2">
-                  <h4 className="text-xs font-medium text-gray-600">{new Date(post.date).toLocaleDateString('pt-br')}</h4>
+                <h4 className="text-xs font-medium text-gray-600">{new Date(post.date).toLocaleDateString('pt-br')}</h4>
               </span>
               <span className="block mt-2">
-                  <h3 className="text-xl font-semibold text-gray-900">{post.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-900">{post.title}</h3>
               </span>
 
               <span className="block mt-2">
