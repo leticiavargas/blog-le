@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
         />
       }
       <p className={styles.post}>{post.description}</p>
-      <Link href={`/post/${post.slug}`} className={styles.readMore}>Leia mais</Link>
+      <Link href={`/blog/${post.slug}`} className={styles.readMore}>Leia mais</Link>
     </section>
    </article>
    

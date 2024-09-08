@@ -2,7 +2,7 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 
 const GetPublishedBlogPosts = async () => {
-  console.log("GETTING BLOG POSTS ... ");
+ // console.log("GETTING BLOG POSTS ... ");
   const client = new Client({ auth: process.env.NOTION_ACCESS_TOKEN });
   const database = process.env.NOTION_BLOG_DATABASE_ID ?? '';
   // list blog posts
@@ -81,8 +81,6 @@ function pageToPostTransformer(page) {
         cover = ''
     }
   }
-
-  //const tags = page.properties.Tags.multi_select.map(tag => tag.name);
 
   return {
     id: page.id,
